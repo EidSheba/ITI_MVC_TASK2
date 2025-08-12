@@ -1,0 +1,52 @@
+﻿@model List<Course>
+
+	@{
+	string currentCategory = Context.Request.Query["cat"];
+	}
+
+	<h4 "> Categoris</h4>
+
+	<form method="get" asp-controller="Course" asp-action="Index" >
+	<select  class="form-select-sm" name="cat" onchange="this.form.submit()">
+		<option value="">All Categories</option>
+		@foreach (var category in ViewBag.Categories)
+		{
+			<option value="@category" selected="@(category==currentCategory)">@category</option>
+		}
+		</select>
+	</form>
+<h4 > Search By ID</h4>
+	<form method="get" asp-action="GetByID" asp-controller="Course">
+	 <input type="text" id="ss" name="id" placeholder="Enter ID" onchange="this.form.submit()" />
+		<input type="submit" value="search" style="color:dimgray"/>
+	</form>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Title</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>State</th>
+		</tr>
+		</thead>
+
+		<tbody>
+			@foreach(var course in Model){
+				<tr>
+				<td>@course.Id</td>
+				<td>@course.Name</td>
+				<td>@course.Category</td>
+				<td>@course.Description</td>
+				<td>@course.StartDate</td>
+				<td>@course.EndDate</td>
+				<td>@(course.IsActive?"Running":"Ended")</td>
+				</tr>
+			}
+
+		</tbody>
+
+</table>

@@ -1,0 +1,12 @@
+﻿@using MVCITI.Models.VM
+@model CourseVM
+<h1 > Details of course </h1>
+<form method="get" >
+    <div>
+        <p><Description: @Model.Description</p>
+        <p>Category: @Model.Category</p>
+        <p>Start Date: @Model.StartDate.ToString("yyyy-MM-dd")</p>
+        <p>End Date: @Model.EndDate.ToString("yyyy-MM-dd")</p>
+        <p>Instructor Id: @(Model.InstructorId != 0 ? Model.InstructorId.ToString() : "No Instructor Assigned")</p>
+    </div>
+</form>
